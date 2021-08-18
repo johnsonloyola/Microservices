@@ -1,0 +1,60 @@
+server:
+    port: 8081
+
+spring:
+    profiles:
+       active: qa
+---
+
+spring:
+    profiles: dev
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: P@ssw0rd
+        url: jdbc:mysql://localhost:3306/dcbapp
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+        show-sql: true
+    zipkin:
+      base-url: http://127.0.0.1:9411/
+
+---
+
+spring:
+    profiles: qa
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: P@ssw0rd
+        url: jdbc:mysql://localhost:3306/dcbapp-qa
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+        show-sql: true
+    application:
+      name: DEPARTMENT-SERVICE
+
+---
+
+spring:
+    profiles: prod
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: P@ssw0rd
+        url: jdbc:mysql://localhost:3306/dcbapp-prod
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+        show-sql: true
