@@ -1,0 +1,22 @@
+server:
+ port: 9191
+
+spring:
+ application:
+   name: API-GATEWAY
+ cloud:
+    gateway:
+      routes:
+      - id: USER-SERVICE
+        uri: lb://USER-SERVICE
+        predicates:
+        - Path=/users/**
+      - id: DEPARTMENT-SERVICE
+        uri: lb://DEPARTMENT-SERVICE
+        predicates:
+        - Path=/departments/**
+    config: 
+     server: 
+       git:
+        uri: https://github.com/johnsonloyola/config-server
+        clone-on-start: true
